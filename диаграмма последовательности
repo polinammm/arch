@@ -1,0 +1,7 @@
+@startuml
+Human -> Server: запрос напитка
+Camera -> Server: определение местоположения робота
+Server -> Robot: отправление команд для движения
+Server -> Station: налитие напитка
+Robot -> Human: отдача напитка человеку
+@enduml
