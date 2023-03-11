@@ -1,0 +1,65 @@
+using namespace std;
+
+
+enum EState { EWork, EProcessDrink, ERotate, EMove, };
+class Detector {
+    public:
+    bool ClientExists();
+    bool hasDeltaAngle(float det);
+    bool hasDeltaDistance(float det);
+};
+
+class CommandSender {
+    public:
+    void rotate(float angle);
+    void move (float distant);
+};
+
+class Robot {
+    Detector *det;
+        // bool graffityExists();
+        // bool hasDeltaAngle(float det);
+        // bool hasDeltaDistance(float det);*/
+    EState state;
+    CommandSender *cs;
+        // EMove();
+        // ERotate();
+public:
+    Robot();
+
+    Robot(Detector*det, CommandSender*cs) {
+        state = EWork;
+    }
+
+    void processEvents() {
+        switch (state) {
+            case EWork:
+                if (det -> ClientExists()) {
+                    state = EProcessDrink;
+                    break;
+                }
+            case EProcessDrink:
+                if (det -> hasDeltaAngle(5)) {
+                    state = ERotate;
+                if (det -> hasDeltaDistance(10)) {
+                    state = EMove;
+                }
+                }
+            case ERotate:
+                cs -> rotate(3);
+                state = EProcessDrink;
+                break;
+        }
+    }
+    void run() {
+        while(1)
+            processEvents();
+    }
+};
+
+
+
+int main() {
+    Robot r;
+    r.run();
+}
