@@ -6,9 +6,11 @@ bot = telebot.TeleBot('6231714472:AAGin-BbLzsXZTHtjVsvfWKfvm-n34_lfa0');
 @bot.message_handler(content_types=['text'])
 
 def get_text_messages(message):
-    if message.text == 'Привет':
+    if message.text == '/start':
         bot.send_message(message.from_user.id, "Привет! Я твой помощник в жаркий летний день! Принесу тебе водички. Напиши /menu")
-    if message.text == '/help':
+    elif message.text == 'Привет':
+        bot.send_message(message.from_user.id, "Привет! Я твой помощник в жаркий летний день! Принесу тебе водички. Напиши /menu")
+    elif message.text == '/help':
         bot.send_message(message.from_user.id, "Напиши /menu")
     elif message.text == '/menu':
         keyboard = types.InlineKeyboardMarkup();  # клавиатура
